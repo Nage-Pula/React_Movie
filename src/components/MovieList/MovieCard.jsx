@@ -2,17 +2,17 @@ import React from 'react'
 import './MovieCard.css';
 import Star from "../../assets/star.png";
 
-const MovieCard = () => {
+const MovieCard = ({ movie }) => {
   return (
-    <a href="" className='movie_card'>
-      <img src="https://www.tallengestore.com/cdn/shop/products/TopGunMaverick-TomCruise-HollywoodActionMoviePoster_71eb01ab-5018-48a0-a9ef-1abb7b810d29.jpg?v=1673605521" alt="" className='movie_poster'/>
+    <a href={`https://www.themoviedb.org/movie/${movie.id}`} target="_blank" rel="noopener noreferrer" className='movie_card'>
+      <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt="" className='movie_poster'/>
       <div className="movie_details">
-        <h3 className='movie_details_heading'>Movie Name</h3>
-        <div className="movie_date_rate">
-            <p>Release Date: 2022-12-01</p>
-            <p>Rating: 8.5 <img src={Star} alt="rating icon" className='card_emoji' /></p>
+        <h3 className='movie_details_heading'>{movie.original_title}</h3>
+        <div className="align_center movie_date_rate">
+            <p>{movie.release_date}</p>
+            <p>Rating: {movie.vote_average} <img src={Star} alt="rating icon" className='card_emoji' /></p>
         </div>
-        <p className='movie_description'>This is a brief description of the movie.</p>
+        <p className='movie_description'>{movie.overview.slice(0, 100)+"..."}</p>
       </div>
     </a>
   )
